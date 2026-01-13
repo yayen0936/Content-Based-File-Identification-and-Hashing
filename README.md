@@ -1,5 +1,3 @@
-# Content Signature Intake & Triage Tool
-
 A Python-based intake/triage tool that analyzes **file content** (magic bytes + header structures), not filenames or extensions. It is designed for **malware-analysis** workflows where correct identification of artifacts (e.g., executables mislabeled as .txt) is required.
 
 ## Requirements Met
