@@ -1,20 +1,19 @@
+# File Content Triage Tool
 
-Tony
+## What this Python script does
+This Python script helps you **organize a folder of unknown files**.
 
-A Python-based intake/triage tool that analyzes **file content** (magic bytes + header structures), not filenames or extensions. It is designed for **malware-analysis** workflows where correct identification of artifacts (e.g., executables mislabeled as .txt) is required.
+It **looks inside each file** to figure out what it really is (instead of trusting the filename like `.exe` or `.txt`), then it:
 
-## Requirements Met
-This tool explicitly implements the following:
+- **Calculates a unique fingerprint (SHA-256 hash)** for each file
+- **Sorts files into folders** such as `executables`, `documents`, `images`, `scripts`, etc.
+- **Creates a CSV report** (`triage_summary.csv`) listing each file’s:
+  - name
+  - detected type
+  - hash
+  - notes (e.g., if the filename looks suspicious)
 
-- **Walk a directory of mixed files** (recursive)
-- **Generate cryptographic hashes** for each file (SHA-256 by default; MD5 optional)
-- **Identify true file type using magic bytes/headers** (not extensions)
-- **Sort files into folders by true type** (e.g., `/executables`, `/scripts`, `/textdocs`, `/other`, plus additional buckets)
-- **Produce a summary report** (CSV and/or TXT) mapping:
-  - `Original Filename → True file type → Hash → Notes`
-- **Does not execute files** and does not attempt to judge maliciousness.
-
-## What the Tool Will NOT Do (by design)
-- It will **not execute** or open files in an unsafe way.
-- It will **not decide** malicious vs. benign.
-- It will **not auto-escalate** using reputation scores or external intelligence.
+## What it does NOT do
+- It **does not run or open** the files.
+- It **does not decide** if a file is safe or malicious.
+- It **does not use the internet** or reputation checks.
