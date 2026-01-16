@@ -5,7 +5,7 @@ import csv
 import magic
  
 # Configuration
-SOURCE_DIR = './incoming_files'
+SOURCE_DIR = './Lab2_Corpus'
 OUTPUT_DIR = './triaged_files'
 REPORT_NAME = 'triage_summary.csv'
  
