@@ -7,7 +7,7 @@ It **looks inside each file** to figure out what it really is (instead of trusti
 
 - **Calculates a unique fingerprint (SHA-256 hash)** for each file
 - **Sorts files into folders** such as `executables`, `documents`, `images`, `scripts`, etc.
-- **Creates a CSV report** (`triage_summary.csv`) listing each file’s:
+- **Creates a CSV report** listing each file’s:
   - name
   - detected type
   - hash
