@@ -1,15 +1,16 @@
+# Import modules
 import os
 import shutil
 import hashlib
 import csv
 import magic
- 
-# Configuration
+
+# Set source folder to scan, output folder for sorted copies, and CSV summary report
 SOURCE_DIR = './Lab2_Corpus'
 OUTPUT_DIR = './triaged_files'
 REPORT_NAME = 'triage_summary.csv'
  
-# Define categories based on MIME types or magic strings
+# Map detected MIME types (content format) to triage folder categories
 CATEGORY_MAP = {
     'application/x-dosexec': 'executables',
     'application/x-executable': 'executables',
@@ -22,20 +23,22 @@ CATEGORY_MAP = {
     'image/png': 'images',
     'application/zip': 'archives',
 }
- 
+
+# Generate a SHA256 hash for a file.
 def calculate_hash(file_path):
-    """Generates a SHA256 hash for a file."""
     sha256_hash = hashlib.sha256()
     with open(file_path, "rb") as f:
         for byte_block in iter(lambda: f.read(4096), b""):
             sha256_hash.update(byte_block)
     return sha256_hash.hexdigest()
- 
+
+# Create the base output directory
 def triage_files():
     # Ensure output directories exist
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
  
+    # Initialize a list to store per-file results (metadata + hash + notes)
     report_data = []
  
     # Walk through the directory
@@ -80,6 +83,7 @@ def triage_files():
         writer.writerows(report_data)
  
     print(f"Triage complete. Report saved to {REPORT_NAME}")
- 
+
+# Run the triage workflow only when this file is executed directly
 if __name__ == "__main__":
     triage_files()
